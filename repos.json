@@ -1,31 +1,49 @@
-[  {
-    "kernelSource": {
-      "name": "miku-KernelSU",
-      "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
-      "branch": "TDA",
-      "device": "odin"
+[
+  {
+  "kernelSource": {
+    "name": "YouSureSir-KSU",
+    "repo": "https://github.com/VoltProjectOne/kernel_xiaomi_vayu.git",
+    "branch": "base",
+    "device": "vayu",
+    "defconfig": "vayu_defconfig"
+  },
+  "withKernelSU": true,
+  "toolchains": [
+    {
+    "repo": "https://github.com/mvaisakh/gcc-arm64",
+    "branch": "gcc-master",
+    "name": "gcc64",
+    "binPath": ["bin"]
     },
-    "withKernelSU": true,
-    "toolchains": [
-      {
-        "repo": "https://android.googlesource.com/platform/prebuilts/gas/linux-x86",
-        "branch": "master",
-        "name": "gas"
-      },
-      {
-        "repo": "https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone/",
-        "branch": "11",
-        "name": "clang"
-      }
-    ],
-    "params": {
-      "ARCH": "arm64",
-      "CROSS_COMPILE": "aarch64-linux-gnu-",
-      "CROSS_COMPILE_ARM32": "arm-linux-gnueabi-",
-      "CROSS_COMPILE_COMPAT": "arm-linux-gnueabi-",
-      "CLANG_TRIPLE": "aarch64-linux-gnu-",
-      "AR": "",
-      "CC": "clang"
+    {
+    "repo": "https://github.com/mvaisakh/gcc-arm",
+    "branch": "gcc-master",
+    "name": "gcc32",
+    "binPath": ["bin"]
+    },
+    {
+      "url": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r498229b.tar.gz",
+      "name": "clang",
+      "binPath": ["bin"]
     }
+  ],
+  "ccache": true,
+  "params": {
+    "ARCH": "arm64",
+    "CC": "clang",
+      "externalCommand": {
+      "CLANG_TRIPLE": "aarch64-elf-",
+      "CROSS_COMPILE": "aarch64-elf-",
+      "CROSS_COMPILE_ARM32": "arm-eabi-",
+      "LLVM": "1"
+    }
+  },
+  "AnyKernel3": {
+    "use": true,
+    "release": true,
+    "repo": "https://github.com/VoltProjectOne/AnyKernel3.git",
+    "branch": "vayu"
   }
+}
+
 ]
